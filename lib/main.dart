@@ -3,8 +3,11 @@ import 'package:provider/provider.dart';
 import './providers/great_places.dart';
 import './screens/places_list.dart';
 import './screens/add_place_screen.dart';
+import './screens/place_detail_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: "lib/.env");
   runApp(const MyApp());
 }
 
@@ -23,7 +26,10 @@ class MyApp extends StatelessWidget {
               .copyWith(secondary: Colors.amber),
         ),
         home: const PlacesListScreen(),
-        routes: {AddPlaceScreen.routename: (context) => const AddPlaceScreen()},
+        routes: {
+          AddPlaceScreen.routename: (context) => const AddPlaceScreen(),
+          PlaceDetailScreen.routName: (context) => const PlaceDetailScreen()
+        },
       ),
     );
   }
